@@ -17,11 +17,14 @@ class Player {
     }
 
     draw() {
+
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
         this.move()
 
 
+        this.bullets.forEach(bullet => bullet.draw())
+        // this.clearBullets()
     }
 
     move() {
@@ -46,6 +49,8 @@ class Player {
             evt.key === this.keys.up ? this.up = true : null
             evt.key === this.keys.down ? this.down = true : null
             evt.key === this.keys.right ? this.right = true : null
+
+            evt.key === this.keys.space ? this.shoot() : null
         }
 
         document.onkeyup = evt => {
@@ -53,11 +58,20 @@ class Player {
             evt.key === this.keys.up ? this.up = false : null
             evt.key === this.keys.down ? this.down = false : null
             evt.key === this.keys.right ? this.right = false : null
-
         }
-
-
-
-
     }
+
+
+    shoot() {
+        let bala = new Bullets(this.ctx, this.posX, this.posY, this.width, this.height)
+        console.log(bala)
+        this.bullets.push(bala)
+    }
+
+    // clearBullets() {
+
+    //     this.bullets = this.bullets.filter(bullet => bullet.posX <= this.gameWidth);
+    // }
+
+
 }
