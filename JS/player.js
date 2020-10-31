@@ -16,6 +16,17 @@ class Player {
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
 
+
+    }
+
+    move(dir) {
+
+        dir === 'left' ? this.posX -= 20 : null
+        dir === 'right' ? this.posX += 20 : null
+        dir === 'up' ? this.posY -= 20 : null
+        dir === 'down' ? this.posY += 20 : null
+
+
     }
 
     setListeners() {
@@ -23,11 +34,15 @@ class Player {
         document.addEventListener("mousemove", evt => {
             let mouseX = evt.clientX
             let mouseY = evt.clientY
-
-            this.posX = mouseX
-            this.posY = mouseY
-            console.log('esta pillando el raton')
         })
-        
+
+        document.onkeydown = evt => {
+            evt.key === this.keys.left ? this.move('left') : null
+            evt.key === this.keys.up ? this.move('up') : null
+            evt.key === this.keys.down ? this.move('down') : null
+            evt.key === this.keys.right ? this.move('right') : null
+        }
+
+
     }
 }
