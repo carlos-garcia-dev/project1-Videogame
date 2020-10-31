@@ -8,6 +8,10 @@ class Player {
         this.posX = this.gameWidth / 2 - 20
         this.posY = this.gameHeigth / 2 - 20
         this.keys = keys
+        this.up = false
+        this.down = false
+        this.right = false
+        this.left = false
         this.bullets = []
         this.setListeners()
     }
@@ -15,16 +19,17 @@ class Player {
     draw() {
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
+        this.move()
 
 
     }
 
-    move(dir) {
+    move() {
 
-        dir === 'left' ? this.posX -= 20 : null
-        dir === 'right' ? this.posX += 20 : null
-        dir === 'up' ? this.posY -= 20 : null
-        dir === 'down' ? this.posY += 20 : null
+        this.left ? this.posX -= 15 : null
+        this.right ? this.posX += 15 : null
+        this.down ? this.posY += 20 : null
+        this.up ? this.posY -= 20 : null
 
 
     }
@@ -37,11 +42,21 @@ class Player {
         })
 
         document.onkeydown = evt => {
-            evt.key === this.keys.left ? this.move('left') : null
-            evt.key === this.keys.up ? this.move('up') : null
-            evt.key === this.keys.down ? this.move('down') : null
-            evt.key === this.keys.right ? this.move('right') : null
+            evt.key === this.keys.left ? this.left = true : null
+            evt.key === this.keys.up ? this.up = true : null
+            evt.key === this.keys.down ? this.down = true : null
+            evt.key === this.keys.right ? this.right = true : null
         }
+
+        document.onkeyup = evt => {
+            evt.key === this.keys.left ? this.left = false : null
+            evt.key === this.keys.up ? this.up = false : null
+            evt.key === this.keys.down ? this.down = false : null
+            evt.key === this.keys.right ? this.right = false : null
+
+        }
+
+
 
 
     }
