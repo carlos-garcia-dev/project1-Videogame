@@ -12,14 +12,15 @@ const Game = {
         up: 'w',
         left: 'a',
         down: 's',
-        right: 'd'
+        right: 'd',
+        space: ' '
     },
 
     init() {
         this.canvas = document.getElementById('canvas')
         this.ctx = this.canvas.getContext('2d')
         this.setDimension()
-        
+
         this.start()
     },
 
@@ -58,9 +59,8 @@ const Game = {
 
         this.background.draw()
         this.player.draw()
+    
         this.enemies.forEach(enemy => enemy.draw())
-
-
     },
 
     clear() {
@@ -72,7 +72,4 @@ const Game = {
             this.enemies.push(new Enemie(this.ctx, this.width, this.height, 40, 40, 1))
         }
     }
-
-
-
 }
