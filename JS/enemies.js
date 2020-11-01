@@ -14,6 +14,7 @@ class Enemie {
     init() {
         this.posX = parseInt(Math.random() * this.gameWidth + 1)
         this.posY = parseInt(Math.random() * this.gameHeight + 1)
+        console.log(this.gameWidth, this.gameHeight)
 
     }
 
