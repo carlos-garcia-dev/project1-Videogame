@@ -50,8 +50,8 @@ const Game = {
     },
 
     reset() {
-        this.background = new Background(this.ctx, this.width, this.height)
-        this.player = new Player(this.ctx, this.width, this.height, this.keys)
+        this.background = new Background(this.ctx, this.canvas.width, this.canvas.height)
+        this.player = new Player(this.ctx, this.width, this.height, 30, 30, 5, this.keys)
         this.enemies = []
     },
 
@@ -59,7 +59,7 @@ const Game = {
 
         this.background.draw()
         this.player.draw()
-    
+
         this.enemies.forEach(enemy => enemy.draw())
     },
 
@@ -69,7 +69,7 @@ const Game = {
 
     generateEnemies() {
         if (this.framesCounter % 90 === 0) {
-            this.enemies.push(new Enemie(this.ctx, this.width, this.height, 40, 40, 1))
+            this.enemies.push(new Enemie(this.ctx, this.width, this.height, 40, 40, 4))
         }
     }
 }
